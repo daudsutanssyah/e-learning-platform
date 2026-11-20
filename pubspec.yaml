@@ -1,0 +1,72 @@
+name: e_learning_platform
+description: "A new Flutter project."
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.14.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.1.0
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^3.5.0
+  go_router: ^18.1.4
+  supabase_flutter: ^2.18.3
+  video_player: ^2.14.1
+  chewie: ^1.18.1
+  flutter_native_splash: ^2.4.8
+  lottie: ^3.8.2
+  shared_preferences: ^2.5.6
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  # Assets configuration
+  assets:
+    - assets/mock_data/courses_response.json
+    - assets/animations/education_splash.json
+    - assets/images/splash_logo.png
+    - assets/images/app_launcher_icon.png
+    - assets/images/app_launcher_foreground.png
+
+flutter_native_splash:
+  color: "#F8FAFC"
+  image: assets/images/splash_logo.png
+  color_dark: "#F8FAFC"
+  image_dark: assets/images/splash_logo.png
+  android_12:
+    color: "#F8FAFC"
+    image: assets/images/splash_logo.png
+    color_dark: "#F8FAFC"
+    image_dark: assets/images/splash_logo.png
+  web: false
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_launcher_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#F8FAFC"
+  adaptive_icon_foreground: "assets/images/app_launcher_foreground.png"
+  web:
+    generate: true
+    image_path: "assets/images/app_launcher_icon.png"
+    background_color: "#F8FAFC"
+    theme_color: "#4F46E5"
+  windows:
+    generate: true
+    image_path: "assets/images/app_launcher_icon.png"
+    icon_size: 48

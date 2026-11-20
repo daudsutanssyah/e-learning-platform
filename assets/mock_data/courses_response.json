@@ -1,0 +1,144 @@
+{
+  "status": "success",
+  "message": "Courses retrieved successfully",
+  "data": [
+    {
+      "id": "course-001",
+      "title": "Flutter Clean Architecture, Riverpod & GoRouter",
+      "short_description": "Arsitektur modular Flutter, state management Riverpod, dan navigasi deklaratif GoRouter.",
+      "description": "Pelajari cara menyusun aplikasi Flutter berskala produksi menggunakan pemisahan layer data, domain, dan presentation, manajemen state dengan flutter_riverpod, serta routing modern menggunakan go_router.",
+      "category": "Mobile Development",
+      "level": "Intermediate",
+      "instructor": "Dev Branch & Community Mentors",
+      "thumbnail_url": "https://img.youtube.com/vi/zon3WgmcqQw/hqdefault.jpg",
+      "total_duration_seconds": 1872,
+      "lessons": [
+        {
+          "id": "lesson-001",
+          "course_id": "course-001",
+          "order": 1,
+          "title": "Clean Architecture in Flutter - All You Need to Know!",
+          "description": "Pembahasan layer presentation, domain, dan data serta struktur folder modular untuk aplikasi Flutter.",
+          "duration_seconds": 237,
+          "video_url": "https://youtu.be/zon3WgmcqQw?si=lxY9dOvEx863l9jn"
+        },
+        {
+          "id": "lesson-002",
+          "course_id": "course-001",
+          "order": 2,
+          "title": "Flutter Riverpod Easy Tutorial",
+          "description": "Pengenalan dasar provider, ConsumerWidget, dan reaktivitas state menggunakan flutter_riverpod.",
+          "duration_seconds": 496,
+          "video_url": "https://www.youtube.com/watch?v=7Cp1GlmHTGE"
+        },
+        {
+          "id": "lesson-003",
+          "course_id": "course-001",
+          "order": 3,
+          "title": "State Management Like A Pro - Flutter Riverpod",
+          "description": "Penerapan state management terstruktur dan pengelolaan state asinkron di aplikasi Flutter.",
+          "duration_seconds": 630,
+          "video_url": "https://www.youtube.com/watch?v=GVspNESSess"
+        },
+        {
+          "id": "lesson-004",
+          "course_id": "course-001",
+          "order": 4,
+          "title": "GoRouter: Routing and Navigation 2.0 with Flutter",
+          "description": "Konfigurasi GoRouter, pengiriman parameter antar halaman, dan pengelolaan alur navigasi.",
+          "duration_seconds": 509,
+          "video_url": "https://www.youtube.com/watch?v=fqGlaXpyWvM"
+        }
+      ]
+    },
+    {
+      "id": "course-002",
+      "title": "UI/UX & Design System di Figma",
+      "short_description": "Membangun design system, auto layout responsif, dan component library di Figma.",
+      "description": "Panduan menyusun design system mobile dari awal di Figma mulai dari penataan token warna, tipografi, auto layout responsif, hingga penyusunan UI kit yang siap diimplementasikan ke Flutter.",
+      "category": "UI/UX Design",
+      "level": "Beginner",
+      "instructor": "Tim Gabe & DesignerUp",
+      "thumbnail_url": "https://img.youtube.com/vi/_uva2dQPlV8/hqdefault.jpg",
+      "total_duration_seconds": 2424,
+      "lessons": [
+        {
+          "id": "lesson-005",
+          "course_id": "course-002",
+          "order": 1,
+          "title": "Your First Design System in Figma (Beginner Tutorial)",
+          "description": "Langkah awal menyusun fondasi warna, tipografi, dan komponen inti design system.",
+          "duration_seconds": 897,
+          "video_url": "https://www.youtube.com/watch?v=_uva2dQPlV8"
+        },
+        {
+          "id": "lesson-006",
+          "course_id": "course-002",
+          "order": 2,
+          "title": "Auto Layout in Figma for Beginners (Full Tutorial)",
+          "description": "Mengatur constraint, padding, dan perilaku layout responsif untuk berbagai ukuran layar.",
+          "duration_seconds": 604,
+          "video_url": "https://www.youtube.com/watch?v=nYuXDp-lnLM"
+        },
+        {
+          "id": "lesson-007",
+          "course_id": "course-002",
+          "order": 3,
+          "title": "Design System UI Kits for Figma - Full UI Tutorial",
+          "description": "Pengorganisasian komponen reusable dan dokumentasi UI kit untuk kolaborasi tim produk.",
+          "duration_seconds": 923,
+          "video_url": "https://www.youtube.com/watch?v=gnRxVgXsAJM"
+        }
+      ]
+    },
+    {
+      "id": "course-003",
+      "title": "Dart 3 Modern & Pemrograman Asinkron",
+      "short_description": "Menguasai fitur Dart 3, pattern matching, sealed class, serta Future dan async/await.",
+      "description": "Pelajari fitur inti Dart 3 yang mendukung kode aman dan ekspresif, termasuk pattern matching, class modifier, serta mekanisme pemrograman asinkron untuk konsumsi data API.",
+      "category": "Programming",
+      "level": "Beginner",
+      "instructor": "Flutter Team & Net Ninja",
+      "thumbnail_url": "https://img.youtube.com/vi/KhYTFglbF2k/hqdefault.jpg",
+      "total_duration_seconds": 2425,
+      "lessons": [
+        {
+          "id": "lesson-008",
+          "course_id": "course-003",
+          "order": 1,
+          "title": "Full Review of Dart 3: What's New?",
+          "description": "Ringkasan fitur utama Dart 3 termasuk sound null safety, records, dan class modifiers.",
+          "duration_seconds": 397,
+          "video_url": "https://www.youtube.com/watch?v=YGDYjtbx9Yg"
+        },
+        {
+          "id": "lesson-009",
+          "course_id": "course-003",
+          "order": 2,
+          "title": "Bringing Pattern Matching to Dart",
+          "description": "Penggunaan switch expression, destructuring, dan sealed class untuk validasi state.",
+          "duration_seconds": 1228,
+          "video_url": "https://www.youtube.com/watch?v=KhYTFglbF2k"
+        },
+        {
+          "id": "lesson-010",
+          "course_id": "course-003",
+          "order": 3,
+          "title": "Dart Crash Course: Async, Await & Futures",
+          "description": "Penanganan operasi asinkron menggunakan Future, async/await, dan error handling.",
+          "duration_seconds": 500,
+          "video_url": "https://www.youtube.com/watch?v=i5qLpkfa8NQ"
+        },
+        {
+          "id": "lesson-011",
+          "course_id": "course-003",
+          "order": 4,
+          "title": "Simulasi Error Playback (Video Tidak Tersedia)",
+          "description": "Materi pengujian error state pemutar video. ID video tidak valid untuk memverifikasi penanganan errorCode dan tombol coba lagi.",
+          "duration_seconds": 300,
+          "video_url": "https://www.youtube.com/watch?v=00000000000"
+        }
+      ]
+    }
+  ]
+}
