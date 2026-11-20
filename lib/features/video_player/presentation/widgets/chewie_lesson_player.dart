@@ -43,9 +43,10 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
     // untuk mencegah FlutterError: Tried to modify a provider while the widget tree was building
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      ref
-          .read(videoPlayerProvider.notifier)
-          .loadLesson(lessonId: widget.lessonId, videoUrl: widget.videoUrl);
+      ref.read(videoPlayerProvider.notifier).loadLesson(
+            lessonId: widget.lessonId,
+            videoUrl: widget.videoUrl,
+          );
     });
   }
 
@@ -59,9 +60,10 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
       // Tunda modifikasi provider saat widget tree sedang di-rebuild
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        ref
-            .read(videoPlayerProvider.notifier)
-            .loadLesson(lessonId: widget.lessonId, videoUrl: widget.videoUrl);
+        ref.read(videoPlayerProvider.notifier).loadLesson(
+              lessonId: widget.lessonId,
+              videoUrl: widget.videoUrl,
+            );
       });
     }
   }
@@ -182,13 +184,9 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
     final value = controller.value;
     if (value.hasError) {
       // Cetak detail exception mentah hanya ke log debug
-      debugPrint(
-        'ChewieLessonPlayer playback error: ${value.errorDescription}',
-      );
+      debugPrint('ChewieLessonPlayer playback error: ${value.errorDescription}');
       safeDispatch(() {
-        ref
-            .read(videoPlayerProvider.notifier)
-            .setError(
+        ref.read(videoPlayerProvider.notifier).setError(
               'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.',
             );
       });
@@ -340,9 +338,11 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
       // Petakan PlatformException ke pesan ramah pengguna berbahasa Indonesia
       final String userFriendlyMessage;
       if (e is PlatformException) {
-        userFriendlyMessage = 'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
+        userFriendlyMessage =
+            'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
       } else {
-        userFriendlyMessage = 'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
+        userFriendlyMessage =
+            'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
       }
 
       safeDispatch(() {
@@ -354,8 +354,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
   @override
   Widget build(BuildContext context) {
     ref.listen<VideoPlayerUiState>(videoPlayerProvider, (previous, next) {
-      if (next.status == LessonPlaybackStatus.loading &&
-          next.videoUrl != null) {
+      if (next.status == LessonPlaybackStatus.loading && next.videoUrl != null) {
         final hasVideoChanged = previous?.videoUrl != next.videoUrl;
         final hasRetried = previous?.retryAttempt != next.retryAttempt;
 
@@ -369,7 +368,10 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
 
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: Container(color: Colors.black, child: _buildPlayerContent(state)),
+      child: Container(
+        color: Colors.black,
+        child: _buildPlayerContent(state),
+      ),
     );
   }
 
@@ -403,9 +405,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () {
-                  ref
-                      .read(videoPlayerProvider.notifier)
-                      .retry(
+                  ref.read(videoPlayerProvider.notifier).retry(
                         lessonId: widget.lessonId,
                         videoUrl: widget.videoUrl,
                       );
@@ -449,7 +449,10 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
             const SizedBox(height: 12),
             Text(
               message,
-              style: const TextStyle(color: Colors.white70, fontSize: 12),
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+              ),
             ),
           ],
         ),

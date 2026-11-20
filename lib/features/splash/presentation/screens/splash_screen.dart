@@ -46,13 +46,15 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.easeIn,
     );
 
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(0, 0.25), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _textAnimController,
-            curve: Curves.easeOutCubic,
-          ),
-        );
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.25),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _textAnimController,
+        curve: Curves.easeOutCubic,
+      ),
+    );
 
     _textAnimController.forward();
 
@@ -103,12 +105,50 @@ class _SplashScreenState extends State<SplashScreen>
                       position: _slideAnimation,
                       child: Column(
                         children: [
+                          // Judul Aplikasi
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.primary
+                                          .withValues(alpha: 0.3),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: const Icon(
+                                  Icons.school_rounded,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              const Text(
+                                'EduPlatform',
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: -0.5,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+
                           // Slogan / Tagline
                           const Text(
                             'Belajar Kapan Saja, Di Mana Saja',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 14,
                               fontWeight: FontWeight.w500,
                               color: AppColors.textSecondary,
                               height: 1.4,
