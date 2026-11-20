@@ -5,9 +5,6 @@
 final class AppAssets {
   const AppAssets._();
 
-  /// Path ke file JSON mock data courses.
-  static const String coursesMockJson = 'assets/mock_data/courses_response.json';
-
   /// Path ke file animasi Lottie untuk splash screen.
   static const String splashAnimation = 'assets/animations/education_splash.json';
 

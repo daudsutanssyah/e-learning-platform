@@ -36,7 +36,6 @@ flutter:
 
   # Assets configuration
   assets:
-    - assets/mock_data/courses_response.json
     - assets/animations/education_splash.json
     - assets/images/splash_logo.png
     - assets/images/app_launcher_icon.png
