@@ -10,8 +10,6 @@
 
 Aplikasi mobile pembelajaran interaktif (*Simple E-Learning Platform*) untuk sisi siswa (*student side*) yang dibangun menggunakan **Flutter** dan **Dart 3** dengan arsitektur **Feature-First Clean Architecture**, **Riverpod**, **GoRouter**, dan basis data cloud **Supabase PostgreSQL**. Aplikasi menghadirkan pengalaman belajar yang mulus dengan katalog kursus adaptif, silabus terstruktur, kartu kontekstual kelas aktif 3 status, filter progres belajar, pemutar video native Chewie dengan manajemen siklus hidup ketat (*anti-memory leak* & *auto-pause* saat latar belakang), serta transisi splash screen elegan dengan *background preloading* otomatis.
 
-> 📖 **Dokumentasi Lengkap:** Detail arsitektur mendalam, pohon direktori, diagram aliran data Mermaid, ERD basis data, dan flowchart siklus hidup pemutar video tersedia di [docs/SYSTEM_DESIGN.md](docs/SYSTEM_DESIGN.md).
-
 ---
 
 ## Fitur Utama
