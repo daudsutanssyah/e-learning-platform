@@ -33,7 +33,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   void initState() {
     super.initState();
 
-    // Hapus native splash screen pada platform non-web begitu widget selesai di-mount
     if (!kIsWeb) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         FlutterNativeSplash.remove();
@@ -50,42 +49,31 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       curve: Curves.easeIn,
     );
 
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.25),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _textAnimController,
-        curve: Curves.easeOutCubic,
-      ),
-    );
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(0, 0.25), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _textAnimController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
 
     _textAnimController.forward();
 
-    // Mulai preloading data di background sambil menampilkan animasi Lottie
     _preloadDataAndNavigate();
   }
 
   Future<void> _preloadDataAndNavigate() async {
-    // Berikan durasi minimum 1400 ms agar animasi Lottie dan teks branding
-    // dapat dinikmati pengguna secara elegan tanpa perpindahan kasar/loncat
-    final minDisplayDuration =
-        Future.delayed(const Duration(milliseconds: 1400));
+    final minDisplayDuration = Future.delayed(
+      const Duration(milliseconds: 1400),
+    );
 
-    // Preload daftar kursus dari Supabase & status progres dari SharedPreferences
     final preloadFuture = Future.wait([
-      ref
-          .read(coursesListProvider.future)
-          .catchError((_) => <CourseEntity>[]),
+      ref.read(coursesListProvider.future).catchError((_) => <CourseEntity>[]),
       ref
           .read(progressNotifierProvider.future)
           .catchError((_) => const LearningProgressState()),
-    ]).timeout(
-      const Duration(milliseconds: 3500),
-      onTimeout: () => [],
-    );
+    ]).timeout(const Duration(milliseconds: 3500), onTimeout: () => []);
 
-    // Tunggu kedua proses (durasi minimum branding + preload data) selesai
     await Future.wait([preloadFuture, minDisplayDuration]);
 
     if (!mounted) return;
@@ -142,8 +130,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                                   borderRadius: BorderRadius.circular(12),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: AppColors.primary
-                                          .withValues(alpha: 0.3),
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.3,
+                                      ),
                                       blurRadius: 12,
                                       offset: const Offset(0, 4),
                                     ),

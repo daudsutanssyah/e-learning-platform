@@ -8,9 +8,7 @@ import '../../domain/usecases/resolve_active_course_use_case.dart';
 import '../providers/progress_providers.dart';
 
 /// Kartu ringkasan belajar kontekstual berbasis kelas aktif dengan 3 state tampilan:
-/// 1. Sambutan Awal (Cold Start: belum ada kelas aktif).
-/// 2. Kelas Aktif (sedang dalam proses belajar).
-/// 3. Kelas Aktif Tuntas (100% selesai).
+
 class LearningSummaryCard extends ConsumerWidget {
   const LearningSummaryCard({super.key});
 

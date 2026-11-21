@@ -1,6 +1,4 @@
-/// Entity immutable yang merepresentasikan materi pembelajaran (lesson).
-///
-/// Dibuat murni menggunakan Dart SDK tanpa dependensi Flutter.
+
 final class LessonEntity {
   const LessonEntity({
     required this.id,

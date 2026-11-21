@@ -9,9 +9,8 @@ import '../../domain/repositories/lesson_repository.dart';
 import '../../domain/usecases/get_lesson_by_id_usecase.dart';
 import '../../domain/usecases/get_lessons_by_course_id_usecase.dart';
 
-/// Provider data source untuk fitur Lesson.
-///
-/// Menggunakan [SupabaseLessonDataSource] yang terhubung langsung ke Supabase PostgreSQL API.
+
+
 final lessonDataSourceProvider = Provider<LessonDataSource>((ref) {
   final client = ref.watch(supabaseClientProvider);
   final networkChecker = ref.watch(networkCheckerProvider);

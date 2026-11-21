@@ -3,7 +3,6 @@ import '../../../lesson/domain/entities/lesson_entity.dart';
 import '../entities/course_progress_entity.dart';
 import '../entities/overall_progress_entity.dart';
 
-/// Use case murni (*pure Dart*) untuk menghitung progres kursus dan progres keseluruhan.
 final class CalculateCourseProgressUseCase {
   const CalculateCourseProgressUseCase();
 

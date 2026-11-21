@@ -8,8 +8,6 @@ import 'package:video_player/video_player.dart';
 import '../providers/video_player_provider.dart';
 import '../providers/video_player_state.dart';
 
-/// Widget pemutar video native menggunakan VideoPlayer dan Chewie
-/// dengan strict lifecycle management tanpa memory leak.
 class ChewieLessonPlayer extends ConsumerStatefulWidget {
   const ChewieLessonPlayer({
     super.key,
@@ -39,14 +37,11 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    // Tunda pemanggilan loadLesson hingga frame pertama selesai dibangun
-    // untuk mencegah FlutterError: Tried to modify a provider while the widget tree was building
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      ref.read(videoPlayerProvider.notifier).loadLesson(
-            lessonId: widget.lessonId,
-            videoUrl: widget.videoUrl,
-          );
+      ref
+          .read(videoPlayerProvider.notifier)
+          .loadLesson(lessonId: widget.lessonId, videoUrl: widget.videoUrl);
     });
   }
 
@@ -57,13 +52,11 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
         oldWidget.videoUrl != widget.videoUrl) {
       _initToken++;
       _disposeControllers(deferDispose: true);
-      // Tunda modifikasi provider saat widget tree sedang di-rebuild
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        ref.read(videoPlayerProvider.notifier).loadLesson(
-              lessonId: widget.lessonId,
-              videoUrl: widget.videoUrl,
-            );
+        ref
+            .read(videoPlayerProvider.notifier)
+            .loadLesson(lessonId: widget.lessonId, videoUrl: widget.videoUrl);
       });
     }
   }
@@ -80,8 +73,6 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
 
   @override
   void deactivate() {
-    // Hapus pemanggilan _pauseSafely() secara sinkron di deactivate
-    // untuk mencegah benturan dengan fase build Overlay saat navigasi atau fullscreen
     super.deactivate();
   }
 
@@ -90,7 +81,6 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
     WidgetsBinding.instance.removeObserver(this);
     _initToken++;
     _disposeControllers(deferDispose: false);
-    // Kembalikan orientasi layar ke normal saat keluar dari layar pemutar
     SystemChrome.setPreferredOrientations(const [
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -109,9 +99,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
               _videoPlayerController?.value.isPlaying == true) {
             _videoPlayerController?.pause();
           }
-        } catch (_) {
-          // Abaikan jika controller sudah dalam proses dispose atau belum siap
-        }
+        } catch (_) {}
       });
     } else {
       try {
@@ -119,9 +107,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
             _videoPlayerController?.value.isPlaying == true) {
           _videoPlayerController?.pause();
         }
-      } catch (_) {
-        // Abaikan jika controller sudah dalam proses dispose atau belum siap
-      }
+      } catch (_) {}
     }
   }
 
@@ -137,23 +123,17 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
     if (oldListener != null) {
       try {
         oldVideo?.removeListener(oldListener);
-      } catch (_) {
-        // Mencegah crash jika listener sudah tidak terdaftar
-      }
+      } catch (_) {}
     }
 
     void performDispose() {
       try {
         oldChewie?.dispose();
-      } catch (_) {
-        // Mencegah crash jika controller sudah di-dispose
-      }
+      } catch (_) {}
 
       try {
         oldVideo?.dispose();
-      } catch (_) {
-        // Mencegah crash jika controller sudah di-dispose
-      }
+      } catch (_) {}
     }
 
     if (deferDispose) {
@@ -183,10 +163,13 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
 
     final value = controller.value;
     if (value.hasError) {
-      // Cetak detail exception mentah hanya ke log debug
-      debugPrint('ChewieLessonPlayer playback error: ${value.errorDescription}');
+      debugPrint(
+        'ChewieLessonPlayer playback error: ${value.errorDescription}',
+      );
       safeDispatch(() {
-        ref.read(videoPlayerProvider.notifier).setError(
+        ref
+            .read(videoPlayerProvider.notifier)
+            .setError(
               'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.',
             );
       });
@@ -327,7 +310,6 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
         }
       }
     } catch (e, stackTrace) {
-      // Cetak detail exception mentah hanya ke log debug konsol
       debugPrint('ChewieLessonPlayer initialization error: $e\n$stackTrace');
 
       if (!mounted || token != _initToken) {
@@ -335,14 +317,11 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
         return;
       }
 
-      // Petakan PlatformException ke pesan ramah pengguna berbahasa Indonesia
       final String userFriendlyMessage;
       if (e is PlatformException) {
-        userFriendlyMessage =
-            'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
+        userFriendlyMessage = 'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
       } else {
-        userFriendlyMessage =
-            'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
+        userFriendlyMessage = 'Video tidak dapat dimuat. Sumber video tidak tersedia atau koneksi terputus.';
       }
 
       safeDispatch(() {
@@ -354,7 +333,8 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
   @override
   Widget build(BuildContext context) {
     ref.listen<VideoPlayerUiState>(videoPlayerProvider, (previous, next) {
-      if (next.status == LessonPlaybackStatus.loading && next.videoUrl != null) {
+      if (next.status == LessonPlaybackStatus.loading &&
+          next.videoUrl != null) {
         final hasVideoChanged = previous?.videoUrl != next.videoUrl;
         final hasRetried = previous?.retryAttempt != next.retryAttempt;
 
@@ -368,10 +348,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
 
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: Container(
-        color: Colors.black,
-        child: _buildPlayerContent(state),
-      ),
+      child: Container(color: Colors.black, child: _buildPlayerContent(state)),
     );
   }
 
@@ -405,7 +382,9 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () {
-                  ref.read(videoPlayerProvider.notifier).retry(
+                  ref
+                      .read(videoPlayerProvider.notifier)
+                      .retry(
                         lessonId: widget.lessonId,
                         videoUrl: widget.videoUrl,
                       );
@@ -449,10 +428,7 @@ class _ChewieLessonPlayerState extends ConsumerState<ChewieLessonPlayer>
             const SizedBox(height: 12),
             Text(
               message,
-              style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: Colors.white70, fontSize: 12),
             ),
           ],
         ),

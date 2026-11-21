@@ -4,8 +4,6 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/skeleton_shimmer.dart';
 import 'course_card_skeleton.dart';
 
-/// Skeleton loading terpadu untuk [CourseListScreen] yang dibungkus dalam satu [SkeletonShimmer],
-/// sehingga seluruh elemen placeholder beranimasi secara sinkron dengan hanya 1 [AnimationController].
 class CourseListSkeleton extends StatelessWidget {
   const CourseListSkeleton({super.key});
 

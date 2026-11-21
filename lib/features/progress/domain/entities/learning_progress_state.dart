@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-/// Entitas domain immutable yang menyimpan status progres belajar lokal pengguna,
-/// mencakup himpunan materi yang telah selesai serta riwayat kelas dan materi terakhir dibuka.
 @immutable
 final class LearningProgressState {
   const LearningProgressState({
@@ -10,16 +8,12 @@ final class LearningProgressState {
     this.lastActiveLessonId,
   });
 
-  /// Kumpulan ID materi yang telah diselesaikan.
   final Set<String> completedLessonIds;
 
-  /// ID kursus yang terakhir kali dibuka oleh pengguna.
   final String? lastActiveCourseId;
 
-  /// ID materi yang terakhir kali dibuka atau dipelajari oleh pengguna.
   final String? lastActiveLessonId;
 
-  /// Membuat salinan objek dengan field yang diperbarui secara opsional.
   LearningProgressState copyWith({
     Set<String>? completedLessonIds,
     String? Function()? lastActiveCourseId,
@@ -47,10 +41,10 @@ final class LearningProgressState {
 
   @override
   int get hashCode => Object.hash(
-        Object.hashAll(completedLessonIds),
-        lastActiveCourseId,
-        lastActiveLessonId,
-      );
+    Object.hashAll(completedLessonIds),
+    lastActiveCourseId,
+    lastActiveLessonId,
+  );
 
   @override
   String toString() =>

@@ -3,8 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/skeleton_shimmer.dart';
 
-/// Placeholder skeleton untuk [CourseCard] yang memiliki dimensi, padding,
-/// border radius, dan rasio proporsi identik dengan kartu aslinya.
+
 class CourseCardSkeleton extends StatelessWidget {
   const CourseCardSkeleton({super.key});
 

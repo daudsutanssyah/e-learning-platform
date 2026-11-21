@@ -177,7 +177,7 @@ class _CourseDetailScreenState extends ConsumerState<CourseDetailScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // Tombol CTA "Mulai Belajar" / "Lanjutkan Belajar"
+                // Tombol CTA
                 if (hasLessons) ...[
                   SizedBox(
                     width: double.infinity,

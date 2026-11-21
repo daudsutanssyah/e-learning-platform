@@ -39,10 +39,6 @@ final getCourseByIdUseCaseProvider = Provider<GetCourseByIdUseCase>((ref) {
   return GetCourseByIdUseCase(repository);
 });
 
-/// Provider reaktif untuk memuat daftar seluruh kursus pembelajaran.
-///
-/// Disimpan di memori agar hasil preload dari splash screen langsung tersedia
-/// tanpa loading berulang saat navigasi antar halaman.
 final coursesListProvider =
     FutureProvider<List<CourseEntity>>((ref) async {
   final useCase = ref.watch(getCoursesUseCaseProvider);

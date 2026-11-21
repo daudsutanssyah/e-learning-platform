@@ -1,4 +1,3 @@
-/// Entitas domain immutable yang merepresentasikan progres pembelajaran satu kursus.
 final class CourseProgressEntity {
   const CourseProgressEntity({
     required this.completedCount,
@@ -18,10 +17,8 @@ final class CourseProgressEntity {
   /// Persentase progres dalam bilangan bulat bulat (`0` sampai `100`).
   int get percentageInt => (percentage * 100).round();
 
-  /// Menandakan apakah seluruh materi dalam kursus telah diselesaikan.
   bool get isCompleted => totalCount > 0 && completedCount >= totalCount;
 
-  /// Menandakan apakah kursus sedang aktif dipelajari (ada materi selesai tapi belum tuntas).
   bool get isInProgress => completedCount > 0 && !isCompleted;
 
   @override

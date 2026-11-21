@@ -71,7 +71,6 @@ class ProgressNotifier extends AsyncNotifier<LearningProgressState> {
     }
   }
 
-  /// Mengubah status penyelesaian materi (*toggle*) dengan *optimistic update*.
   Future<void> toggleCompleted(String lessonId) async {
     final current = state.value ?? const LearningProgressState();
     final updatedSet = Set<String>.from(current.completedLessonIds);

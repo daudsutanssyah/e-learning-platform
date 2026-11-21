@@ -1,4 +1,3 @@
-/// Entitas domain immutable yang merepresentasikan progres pembelajaran keseluruhan akun/perangkat.
 final class OverallProgressEntity {
   const OverallProgressEntity({
     required this.completedLessonsCount,
@@ -7,16 +6,12 @@ final class OverallProgressEntity {
     required this.totalCoursesCount,
   });
 
-  /// Jumlah seluruh materi yang telah diselesaikan di semua kursus.
   final int completedLessonsCount;
 
-  /// Jumlah total materi di seluruh kursus.
   final int totalLessonsCount;
 
-  /// Jumlah kursus yang seluruh materinya telah selesai.
   final int completedCoursesCount;
 
-  /// Jumlah total kursus yang tersedia.
   final int totalCoursesCount;
 
   /// Persentase materi selesai secara keseluruhan dalam rentang `0.0` sampai `1.0`.
@@ -39,11 +34,11 @@ final class OverallProgressEntity {
 
   @override
   int get hashCode => Object.hash(
-        completedLessonsCount,
-        totalLessonsCount,
-        completedCoursesCount,
-        totalCoursesCount,
-      );
+    completedLessonsCount,
+    totalLessonsCount,
+    completedCoursesCount,
+    totalCoursesCount,
+  );
 
   @override
   String toString() =>

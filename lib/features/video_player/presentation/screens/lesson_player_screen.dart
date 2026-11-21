@@ -13,8 +13,7 @@ import '../../../lesson/presentation/widgets/lesson_tile.dart';
 import '../../../progress/presentation/providers/progress_providers.dart';
 import '../widgets/chewie_lesson_player.dart';
 
-/// Layar pemutar video materi pembelajaran dengan navigasi silabus, strict lifecycle,
-/// dan pelacakan progres penyelesaian materi (manual & otomatis).
+
 class LessonPlayerScreen extends ConsumerStatefulWidget {
   const LessonPlayerScreen({
     super.key,
