@@ -14,19 +14,14 @@ class SkeletonShimmer extends StatefulWidget {
     this.enabled = true,
   });
 
-  /// Widget hierarki yang akan diselimuti efek shimmer.
   final Widget child;
 
-  /// Warna dasar skeleton saat tidak tersorot kilauan.
   final Color baseColor;
 
-  /// Warna kilauan highlight saat sapuan gradien melintas.
   final Color highlightColor;
 
-  /// Durasi satu siklus animasi sapuan gradien.
   final Duration duration;
 
-  /// Mengontrol apakah animasi aktif berulang atau diam (statis).
   final bool enabled;
 
   @override
@@ -40,10 +35,7 @@ class _SkeletonShimmerState extends State<SkeletonShimmer>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
   }
 
   @override
@@ -96,7 +88,6 @@ class _SkeletonShimmerState extends State<SkeletonShimmer>
           blendMode: BlendMode.srcATop,
           shaderCallback: (bounds) {
             final double value = _controller.value;
-            // Sapuan gradien diagonal dari kiri (-1.5) ke kanan (1.5)
             final double startX = -1.5 + (value * 3.0);
             final double endX = startX + 1.2;
 
@@ -119,7 +110,7 @@ class _SkeletonShimmerState extends State<SkeletonShimmer>
 }
 
 /// Kotak placeholder skeleton sederhana dengan warna dasar netral, sudut membulat,
-/// dan dimensi yang dapat disesuaikan.
+
 class SkeletonBox extends StatelessWidget {
   const SkeletonBox({
     super.key,
@@ -129,16 +120,12 @@ class SkeletonBox extends StatelessWidget {
     this.color,
   });
 
-  /// Lebar kotak placeholder (`null` = menyesuaikan parent atau `double.infinity`).
   final double? width;
 
-  /// Tinggi pasti kotak placeholder.
   final double height;
 
-  /// Kelengkungan sudut kotak placeholder (default: 8dp).
   final BorderRadius? borderRadius;
 
-  /// Warna dasar kotak (default: `AppColors.outline` / netral abu-abu terang).
   final Color? color;
 
   @override

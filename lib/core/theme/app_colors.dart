@@ -1,6 +1,5 @@
 import 'package:material_ui/material_ui.dart';
 
-/// Palet warna terpusat dan aksesibel untuk Simple E-Learning Platform.
 final class AppColors {
   const AppColors._();
 

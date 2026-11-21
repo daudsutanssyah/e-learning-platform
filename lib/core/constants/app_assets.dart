@@ -1,7 +1,3 @@
-/// Konstanta path aset aplikasi.
-///
-/// Menyimpan semua path ke file asset untuk akses yang konsisten
-/// dan menghindari typo string literal.
 final class AppAssets {
   const AppAssets._();
 

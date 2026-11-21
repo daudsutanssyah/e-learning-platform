@@ -1,7 +1,3 @@
-/// Base class untuk semua failure di aplikasi.
-///
-/// Menggunakan sealed class untuk memastikan exhaustive pattern matching
-/// dan type-safe error handling.
 sealed class AppFailure implements Exception {
   const AppFailure(this.message);
 
@@ -27,9 +23,7 @@ final class DataParsingFailure extends AppFailure {
 
 /// Failure ketika resource yang diminta tidak ditemukan.
 final class NotFoundFailure extends AppFailure {
-  const NotFoundFailure([
-    super.message = 'Data tidak ditemukan.',
-  ]);
+  const NotFoundFailure([super.message = 'Data tidak ditemukan.']);
 }
 
 /// Failure yang terjadi saat pemutaran video.
@@ -42,9 +36,8 @@ final class PlaybackFailure extends AppFailure {
   final int? errorCode;
 
   @override
-  String toString() => errorCode != null
-      ? '$message (Error code: $errorCode)'
-      : message;
+  String toString() =>
+      errorCode != null ? '$message (Error code: $errorCode)' : message;
 }
 
 /// Failure untuk error yang tidak terkategori.

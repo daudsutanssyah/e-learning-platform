@@ -2,12 +2,7 @@
 final class DurationFormatter {
   const DurationFormatter._();
 
-  /// Mengonversi total detik ke format clock `mm:ss` atau `h:mm:ss`.
-  ///
-  /// Contoh:
-  /// - `65` -> `"1:05"`
-  /// - `3661` -> `"1:01:01"`
-  /// - `0` -> `"0:00"`
+  
   static String toClockFormat(int totalSeconds) {
     if (totalSeconds <= 0) return '0:00';
 
@@ -22,13 +17,6 @@ final class DurationFormatter {
     return '$minutes:${seconds.toString().padLeft(2, '0')}';
   }
 
-  /// Mengonversi total detik ke format ringkas berbahasa Indonesia.
-  ///
-  /// Contoh:
-  /// - `1860` -> `"31 mnt"`
-  /// - `3600` -> `"1 j"`
-  /// - `4500` -> `"1 j 15 mnt"`
-  /// - `0` -> `"0 mnt"`
   static String toReadableTotal(int totalSeconds) {
     if (totalSeconds <= 0) return '0 mnt';
 

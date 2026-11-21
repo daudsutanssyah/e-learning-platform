@@ -1,4 +1,3 @@
-/// Konstanta rute dan generator path untuk navigasi aplikasi.
 final class AppRoutes {
   const AppRoutes._();
 
