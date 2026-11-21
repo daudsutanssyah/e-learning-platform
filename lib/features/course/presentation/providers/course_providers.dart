@@ -41,9 +41,10 @@ final getCourseByIdUseCaseProvider = Provider<GetCourseByIdUseCase>((ref) {
 
 /// Provider reaktif untuk memuat daftar seluruh kursus pembelajaran.
 ///
-/// Menggunakan `autoDispose` agar alokasi memori dilepaskan ketika pengguna berpindah layar.
+/// Disimpan di memori agar hasil preload dari splash screen langsung tersedia
+/// tanpa loading berulang saat navigasi antar halaman.
 final coursesListProvider =
-    FutureProvider.autoDispose<List<CourseEntity>>((ref) async {
+    FutureProvider<List<CourseEntity>>((ref) async {
   final useCase = ref.watch(getCoursesUseCaseProvider);
   return useCase();
 });

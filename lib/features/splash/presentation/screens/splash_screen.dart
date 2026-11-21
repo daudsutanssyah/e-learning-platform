@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_ui/material_ui.dart';
@@ -9,21 +10,24 @@ import 'package:material_ui/material_ui.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../course/domain/entities/course_entity.dart';
+import '../../../course/presentation/providers/course_providers.dart';
+import '../../../progress/domain/entities/learning_progress_state.dart';
+import '../../../progress/presentation/providers/progress_providers.dart';
 
-/// Layar Splash Screen interaktif dengan animasi Lottie dan transisi mulus.
-class SplashScreen extends StatefulWidget {
+/// Layar Splash Screen interaktif dengan animasi Lottie dan background preloading data.
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashScreenState extends ConsumerState<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _textAnimController;
   late final Animation<double> _fadeAnimation;
   late final Animation<Offset> _slideAnimation;
-  Timer? _navigationTimer;
 
   @override
   void initState() {
@@ -58,16 +62,38 @@ class _SplashScreenState extends State<SplashScreen>
 
     _textAnimController.forward();
 
-    // Berikan jeda waktu untuk menikmati animasi sebelum masuk ke katalog kursus
-    _navigationTimer = Timer(const Duration(milliseconds: 2800), () {
-      if (!mounted) return;
-      context.go(AppRoutes.courseListPath);
-    });
+    // Mulai preloading data di background sambil menampilkan animasi Lottie
+    _preloadDataAndNavigate();
+  }
+
+  Future<void> _preloadDataAndNavigate() async {
+    // Berikan durasi minimum 1400 ms agar animasi Lottie dan teks branding
+    // dapat dinikmati pengguna secara elegan tanpa perpindahan kasar/loncat
+    final minDisplayDuration =
+        Future.delayed(const Duration(milliseconds: 1400));
+
+    // Preload daftar kursus dari Supabase & status progres dari SharedPreferences
+    final preloadFuture = Future.wait([
+      ref
+          .read(coursesListProvider.future)
+          .catchError((_) => <CourseEntity>[]),
+      ref
+          .read(progressNotifierProvider.future)
+          .catchError((_) => const LearningProgressState()),
+    ]).timeout(
+      const Duration(milliseconds: 3500),
+      onTimeout: () => [],
+    );
+
+    // Tunggu kedua proses (durasi minimum branding + preload data) selesai
+    await Future.wait([preloadFuture, minDisplayDuration]);
+
+    if (!mounted) return;
+    context.go(AppRoutes.courseListPath);
   }
 
   @override
   void dispose() {
-    _navigationTimer?.cancel();
     _textAnimController.dispose();
     super.dispose();
   }
@@ -155,20 +181,6 @@ class _SplashScreenState extends State<SplashScreen>
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: size.height * 0.08),
-
-                  // Indikator Loading Halus
-                  const SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.5,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.primary,
                       ),
                     ),
                   ),

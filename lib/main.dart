@@ -40,11 +40,27 @@ Future<void> main() async {
 }
 
 /// Root widget aplikasi Simple E-Learning Platform.
-class ELearningApp extends ConsumerWidget {
+class ELearningApp extends ConsumerStatefulWidget {
   const ELearningApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ELearningApp> createState() => _ELearningAppState();
+}
+
+class _ELearningAppState extends ConsumerState<ELearningApp> {
+  @override
+  void initState() {
+    super.initState();
+    // Hapus native splash screen secara mulus begitu frame pertama aplikasi selesai di-render
+    if (!kIsWeb) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        FlutterNativeSplash.remove();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(

@@ -315,7 +315,7 @@ Menyediakan filter cepat berbasis status belajar:
 
 ### D. Dual-Stage Splash Screen & Adaptive Icons
 - **Stage 1 (OS Native):** Menggunakan `flutter_native_splash` dengan palet warna `#F8FAFC` untuk menghilangkan blank screen saat Flutter engine melakukan cold boot.
-- **Stage 2 (In-App Lottie):** Animasi Lottie vektor resolusi tinggi (`assets/animations/education_splash.json`) dengan transisi scale & fade yang mulus ke layar katalog.
+- **Stage 2 (In-App Lottie & Background Preloading):** Animasi Lottie vektor resolusi tinggi (`assets/animations/education_splash.json`) dengan transisi scale & fade yang mulus ke layar katalog, bekerja sebagai *pre-loader* aktif yang memuat data kursus dan status progres di background sehingga saat masuk katalog data langsung tampil instan tanpa spinner tambahan.
 - **Adaptive Launcher Icons:** Dikonfigurasi menggunakan `flutter_launcher_icons` dengan foreground dan background terpisah untuk mendukung icon masking Android 8.0+ (squircle, round, teardrop) dan icon canvas iOS.
 
 ---
